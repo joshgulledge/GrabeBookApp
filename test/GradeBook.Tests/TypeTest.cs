@@ -3,8 +3,29 @@ using Xunit;
 
 namespace GradeBook.Tests
 {
+    public delegate string WriteLogDelete(string logMessage);
+
     public class NewBaseType
     {
+
+        [Fact]
+        public void WriteLogDeletePointToMethod()
+        {
+            WriteLogDelete log;
+            
+            // log = ReturnMessage
+            log = new WriteLogDelete(ReturnMessage);
+            // call the delegate and pass in the method you want to use with it
+            // the method passed in needs to have a same looking args
+
+            var result = log("Hello World");
+            Assert.Equal("Hello World", result);
+        }
+
+        string ReturnMessage(string message)
+        {
+            return message;
+        }
 
         [Fact]
         public void Test1()
@@ -53,19 +74,19 @@ namespace GradeBook.Tests
             book = new Book(newName);
         }
 
-        [Fact]
-        public void changeName()
-        {
-            var book1 = GetBook("My Book");
-            SetName(book1, "New Name");
+        // [Fact]
+        // public void changeName()
+        // {
+        //     var book1 = GetBook("My Book");
+        //     SetName(book1, "New Name");
             
-            Assert.Equal("New Name", book1.Name);
-        }
+        //     Assert.Equal("New Name", book1.Name);
+        // }
 
-        private void SetName(Book book, string newName)
-        {
-            book.Name = newName;
-        }
+        // private void SetName(Book book, string newName)
+        // {
+        //     book.Name = newName;
+        // }
 
         [Fact]
         public void GetBookReturnsDifferentObj()

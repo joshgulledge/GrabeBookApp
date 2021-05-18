@@ -10,8 +10,12 @@ namespace GradeBook.Tests
         {
             var book = new Book("");
 
+            book.AddGrade(89.1);
+            book.AddGrade(90.5);
+            book.AddGrade(77.3);
             //do the stuff
             var result = book.GetStats();
+
 
             //test the stuff
             Assert.Equal(90.5, result.high, 1);

@@ -7,6 +7,10 @@ namespace GradeBook
     public class Book
     {
 
+        public delegate void GradeAddedDelegate(object sender, EventArgs args);
+
+        public event GradeAddedDelegate GradeAdded;
+
         private List<double> GradeList;
         // public string Name
         // {
@@ -21,7 +25,8 @@ namespace GradeBook
         // }
         public string Name
         {
-            get; set;
+            get; 
+            private set;
         }
 
 
@@ -36,6 +41,12 @@ namespace GradeBook
             if (grade <= 100 && grade >= 0)
             {
                 GradeList.Add(grade);
+
+                if(GradeAdded != null)
+                {
+                    // the sender is the object that is being used
+                    GradeAdded(this, new EventArgs());
+                }
             }
             else
             {

@@ -8,6 +8,7 @@ namespace GradeBook
         static void Main(string[] args)
         {
             var book = new Book("Josh's GradeBook");
+            book.GradeAdded += OnGradeAdded;  // uses the delegate
             // book.AddGrade(89.1);
             // book.AddGrade(90.5);
             // book.AddGrade(77.5);
@@ -25,6 +26,11 @@ namespace GradeBook
             Console.WriteLine($"The Lowest of all the grades is {stats.low}");
             Console.WriteLine($"The Letter is {stats.letter}");
 
+        }
+
+        static void OnGradeAdded(object sender, EventArgs e)
+        {
+            Console.WriteLine("A grade was added");
         }
 
     }
