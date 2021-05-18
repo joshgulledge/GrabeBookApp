@@ -12,7 +12,7 @@ namespace GradeBook.Tests
         public void WriteLogDeletePointToMethod()
         {
             WriteLogDelete log;
-            
+
             // log = ReturnMessage
             log = new WriteLogDelete(ReturnMessage);
             // call the delegate and pass in the method you want to use with it
@@ -55,9 +55,9 @@ namespace GradeBook.Tests
             Assert.Equal("New Name", book1.Name);
         }
 
-        private void changeRefName(ref Book book, string newName)
+        private void changeRefName(ref InMemoryBook book, string newName)
         {
-            book = new Book(newName);
+            book = new InMemoryBook(newName);
         }
 
         [Fact]
@@ -69,9 +69,9 @@ namespace GradeBook.Tests
             Assert.Equal("My Book", book1.Name);
         }
 
-        private void GetBookSetName(Book book, string newName)
+        private void GetBookSetName(InMemoryBook book, string newName)
         {
-            book = new Book(newName);
+            book = new InMemoryBook(newName);
         }
 
         // [Fact]
@@ -100,9 +100,9 @@ namespace GradeBook.Tests
 
         }
 
-        Book GetBook(string name)
+        InMemoryBook GetBook(string name)
         {
-            return new Book(name);
+            return new InMemoryBook(name);
         }
 
         [Fact]

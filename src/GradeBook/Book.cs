@@ -4,10 +4,34 @@ using System.Collections.Generic;
 
 namespace GradeBook
 {
-    public class Book
+    public delegate void GradeAddedDelegate(object sender, EventArgs args);
+
+    public class NamedObject
+    {
+        public NamedObject(string name)
+        {
+            Name = name;
+        }
+
+        public string Name
+        {
+            get;
+            set;
+        }
+    }
+
+    public abstract class Book : NamedObject
+    {
+        protected Book(string name) : base(name)
+        {
+        }
+
+        public abstract void AddGrade(double grade);
+    }
+
+    public class InMemoryBook : Book
     {
 
-        public delegate void GradeAddedDelegate(object sender, EventArgs args);
 
         public event GradeAddedDelegate GradeAdded;
 
@@ -23,20 +47,17 @@ namespace GradeBook
         //         _name = value; // available in the setter, incoming value
         //     }
         // }
-        public string Name
-        {
-            get; 
-            private set;
-        }
 
 
-        public Book(string name)
+        // references the constructor of the parent class, uses the same name arg
+        public InMemoryBook(string name) : base(name) 
         {
              GradeList = new List<double>();
              Name = name;
         }
 
-        public void AddGrade (double grade)
+        // this overrides the inherited method from bookbase
+        public override void AddGrade (double grade)
         {
             if (grade <= 100 && grade >= 0)
             {

@@ -8,7 +8,7 @@ namespace GradeBook.Tests
         [Fact]
         public void BookCalculateStats()
         {
-            var book = new Book("");
+            var book = new InMemoryBook("");
 
             book.AddGrade(89.1);
             book.AddGrade(90.5);
