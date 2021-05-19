@@ -144,6 +144,19 @@ namespace GradeBook
             public override Stats GetStats()
             {
                 Stats result = new Stats();
+                
+                using(var reader = File.OpenText($"{Name}.txt"))
+                {
+                    var line = reader.ReadLine();
+
+                    while(line != null)
+                    {
+                        double number = double.Parse(line);
+                        GradeList.Add(number);
+                        line = reader.ReadLine();
+                    }
+                }
+
                 result.CalculateStats(GradeList);
 
                 AddLetterGrade(result);
@@ -156,11 +169,8 @@ namespace GradeBook
                 // doing the code like this allows us to close and dispose of the object when we are done with it
                 using (StreamWriter AddText = File.AppendText($"{Name}.text"))
                 {
-                    AddText.WriteLine($"I added a grade of {grade}");
-                    // AddText.Close();
-                    // AddText.dispose();
-                    // we use the using statement here to auto implement the above two lines of code ?
-
+                    AddText.WriteLine(grade);
+                    
                     if (GradeAdded != null)
                     {
                         GradeAdded(this, new EventArgs());

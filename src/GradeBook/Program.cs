@@ -7,19 +7,14 @@ namespace GradeBook
     {
         static void Main(string[] args)
         {
-            var book = new InMemoryBook("Josh's GradeBook");
+            var book = new DiskBook("Josh's GradeBook");
             book.GradeAdded += OnGradeAdded;  // uses the delegate
-            // book.AddGrade(89.1);
-            // book.AddGrade(90.5);
-            // book.AddGrade(77.5);
-            // double[] numbers = new double[3];
-            // numbers[0] = 12.7;
-            // numbers[1] = 23.6;
-            // numbers[2] = 48.89;
-            // double[] numbers = new[] {12.7, 23.6, 48.89};
+            
 
-            book.GetGrades();
+            // book.GetGrades();
+            book.AddGrade(25.1);
             book.AddGrade(95.5);
+            book.AddGrade(87.5);
             var stats = book.GetStats();
             Console.WriteLine($"For {book.Name}");
             Console.WriteLine($"The Average of all the grades is {stats.average}");
