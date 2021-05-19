@@ -19,6 +19,7 @@ namespace GradeBook
             // double[] numbers = new[] {12.7, 23.6, 48.89};
 
             book.GetGrades();
+            book.AddGrade(95.5);
             var stats = book.GetStats();
             Console.WriteLine($"For {book.Name}");
             Console.WriteLine($"The Average of all the grades is {stats.average}");
